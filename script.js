@@ -6,10 +6,7 @@ const SUPABASE_URL = "https://szcluamocpvhhvwsqikb.supabase.co";
 
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN6Y2x1YW1vY3B2aGh2d3NxaWtiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3Njk2MDIsImV4cCI6MjA5OTM0NTYwMn0.w7ljiL5KdTUumsOlSh6AnudkCAGhnxSPIcIx9_5W4bY";
 
-const supabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+const supabase = window.supabase.createClient
 
 // ==========================================
 // BEST FRIEND QUIZ
