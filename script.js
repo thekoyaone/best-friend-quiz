@@ -1,3 +1,16 @@
+// =========================================
+// SUPABASE
+// =========================================
+
+const SUPABASE_URL = "https://szcluamocpvhhvwsqikb.supabase.co";
+
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN6Y2x1YW1vY3B2aGh2d3NxaWtiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3Njk2MDIsImV4cCI6MjA5OTM0NTYwMn0.w7ljiL5KdTUumsOlSh6AnudkCAGhnxSPIcIx9_5W4bY";
+
+const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
 // ==========================================
 // BEST FRIEND QUIZ
 // Part 1
@@ -570,7 +583,7 @@ submitBtn.addEventListener("click", () => {
 // FINISH QUIZ
 // ==========================================
 
-function finishQuiz() {
+async function finishQuiz() {
 
     quizScreen.classList.remove("active");
 
@@ -648,7 +661,13 @@ function finishQuiz() {
 
     saveHighScore();
 
-}// ==========================================
+    await saveScoreOnline();
+
+await loadLeaderboard();
+
+}
+
+// ==========================================
 // SAVE HIGH SCORE
 // ==========================================
 
@@ -843,3 +862,107 @@ if (savedTheme === "dark") {
 loadQuestion();
 
 loadHighScore();
+
+loadLeaderboard();
+
+// =========================================
+// SAVE SCORE TO SUPABASE
+// =========================================
+
+async function saveScoreOnline() {
+
+    const percentage =
+        Math.round((score / quiz.length) * 100);
+
+    const { error } =
+        await supabase
+        .from("leaderboard")
+        .insert([{
+
+            name: playerName,
+
+            score: score,
+
+            percentage: percentage
+
+        }]);
+
+    if(error){
+
+        console.log(error);
+
+    }
+
+}
+
+// =========================================
+// LOAD LEADERBOARD
+// =========================================
+
+async function loadLeaderboard(){
+
+    const { data, error } =
+        await supabase
+
+        .from("leaderboard")
+
+        .select("*")
+
+        .order("score",{ascending:false})
+
+        .order("created_at",{ascending:true})
+
+        .limit(100);
+
+    if(error){
+
+        console.log(error);
+
+        return;
+
+    }
+
+    const body =
+        document.getElementById("leaderboardBody");
+
+    body.innerHTML="";
+
+    data.forEach((player,index)=>{
+
+        let medal=index+1;
+
+        if(index===0){
+
+            medal="🥇";
+
+        }
+
+        else if(index===1){
+
+            medal="🥈";
+
+        }
+
+        else if(index===2){
+
+            medal="🥉";
+
+        }
+
+        body.innerHTML+=`
+
+        <tr>
+
+            <td>${medal}</td>
+
+            <td>${player.name}</td>
+
+            <td>${player.score}/15</td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
