@@ -1,0 +1,1496 @@
+/* ==========================================
+   ULTIMATE BEST FRIEND QUIZ V2
+   PART 1
+========================================== */
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#0f172a;
+
+    color:white;
+
+    overflow-x:hidden;
+
+    min-height:100vh;
+
+}
+
+/* ==========================================
+   COLORS
+========================================== */
+
+:root{
+
+    --primary:#6C63FF;
+    --secondary:#8B5CF6;
+    --accent:#06B6D4;
+
+    --glass:rgba(255,255,255,.12);
+    --glassBorder:rgba(255,255,255,.18);
+
+    --shadow:
+    0 15px 40px rgba(0,0,0,.35);
+
+    --radius:22px;
+
+}
+
+/* ==========================================
+   AURORA BACKGROUND
+========================================== */
+
+.aurora{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:-3;
+
+}
+
+.blob{
+
+    position:absolute;
+
+    width:450px;
+
+    height:450px;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    animation:float 20s ease-in-out infinite;
+
+}
+
+.blob1{
+
+    background:#6C63FF;
+
+    top:-120px;
+    left:-120px;
+
+}
+
+.blob2{
+
+    background:#06B6D4;
+
+    top:55%;
+    left:70%;
+
+    animation-delay:4s;
+
+}
+
+.blob3{
+
+    background:#EC4899;
+
+    top:70%;
+    left:5%;
+
+    animation-delay:8s;
+
+}
+
+.blob4{
+
+    background:#9333EA;
+
+    top:5%;
+    right:-100px;
+
+    animation-delay:12s;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translate(0,0) scale(1);
+
+}
+
+25%{
+
+transform:translate(80px,-60px) scale(1.15);
+
+}
+
+50%{
+
+transform:translate(-60px,80px) scale(.9);
+
+}
+
+75%{
+
+transform:translate(50px,60px) scale(1.1);
+
+}
+
+100%{
+
+transform:translate(0,0) scale(1);
+
+}
+
+}
+
+/* ==========================================
+   PARTICLES
+========================================== */
+
+.particles{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+z-index:-2;
+
+}
+
+.particles span{
+
+position:absolute;
+
+width:6px;
+
+height:6px;
+
+border-radius:50%;
+
+background:white;
+
+opacity:.18;
+
+animation:particle 16s linear infinite;
+
+}
+
+.particles span:nth-child(1){
+
+left:10%;
+top:15%;
+
+}
+
+.particles span:nth-child(2){
+
+left:30%;
+top:70%;
+
+animation-delay:2s;
+
+}
+
+.particles span:nth-child(3){
+
+left:55%;
+top:35%;
+
+animation-delay:5s;
+
+}
+
+.particles span:nth-child(4){
+
+left:82%;
+top:20%;
+
+animation-delay:7s;
+
+}
+
+.particles span:nth-child(5){
+
+left:76%;
+top:80%;
+
+animation-delay:10s;
+
+}
+
+.particles span:nth-child(6){
+
+left:45%;
+top:90%;
+
+animation-delay:13s;
+
+}
+
+.particles span:nth-child(7){
+
+left:18%;
+top:55%;
+
+animation-delay:8s;
+
+}
+
+.particles span:nth-child(8){
+
+left:90%;
+top:60%;
+
+animation-delay:15s;
+
+}
+
+@keyframes particle{
+
+0%{
+
+transform:translateY(0);
+
+opacity:0;
+
+}
+
+50%{
+
+opacity:.35;
+
+}
+
+100%{
+
+transform:translateY(-160px);
+
+opacity:0;
+
+}
+
+}
+
+/* ==========================================
+   MAIN CONTAINER
+========================================== */
+
+.container{
+
+width:min(900px,92%);
+
+margin:auto;
+
+padding:40px 0;
+
+}
+
+/* ==========================================
+   GLASS CARD
+========================================== */
+
+.glass{
+
+background:rgba(255,255,255,.12);
+
+backdrop-filter:blur(18px);
+
+-webkit-backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.18);
+
+border-radius:24px;
+
+box-shadow:var(--shadow);
+
+padding:35px;
+
+margin-bottom:35px;
+
+}
+
+/* ==========================================
+   SCREEN
+========================================== */
+
+.screen{
+
+display:none;
+
+animation:fade .45s ease;
+
+}
+
+.screen.active{
+
+display:block;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ==========================================
+   TITLE
+========================================== */
+
+.title{
+
+font-size:3rem;
+
+font-weight:800;
+
+text-align:center;
+
+margin-bottom:15px;
+
+}
+
+.subtitle{
+
+text-align:center;
+
+opacity:.85;
+
+font-size:1.1rem;
+
+margin-bottom:30px;
+
+}
+
+.hero{
+
+font-size:4rem;
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+.input-group{
+
+margin-top:25px;
+margin-bottom:30px;
+
+}
+
+.input-group label{
+
+display:block;
+
+margin-bottom:10px;
+
+font-weight:600;
+
+}
+
+.input-group input,
+#answerInput{
+
+width:100%;
+
+padding:18px 20px;
+
+border:none;
+
+outline:none;
+
+border-radius:16px;
+
+background:rgba(255,255,255,.12);
+
+border:2px solid transparent;
+
+color:white;
+
+font-size:1rem;
+
+transition:.3s;
+
+}
+
+.input-group input::placeholder,
+#answerInput::placeholder{
+
+color:rgba(255,255,255,.65);
+
+}
+
+.input-group input:focus,
+#answerInput:focus{
+
+border-color:var(--accent);
+
+box-shadow:
+0 0 20px rgba(6,182,212,.35);
+
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.buttons{
+
+display:flex;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+margin-top:30px;
+
+}
+
+button{
+
+cursor:pointer;
+
+font-family:inherit;
+
+font-size:1rem;
+
+font-weight:600;
+
+border:none;
+
+transition:.3s;
+
+}
+
+.primary{
+
+padding:16px 28px;
+
+background:linear-gradient(
+135deg,
+var(--primary),
+var(--secondary)
+);
+
+color:white;
+
+border-radius:18px;
+
+box-shadow:
+0 12px 30px rgba(108,99,255,.35);
+
+}
+
+.primary:hover{
+
+transform:
+translateY(-4px)
+scale(1.03);
+
+}
+
+.secondary{
+
+padding:16px 28px;
+
+background:rgba(255,255,255,.12);
+
+color:white;
+
+border-radius:18px;
+
+border:1px solid rgba(255,255,255,.2);
+
+}
+
+.secondary:hover{
+
+background:rgba(255,255,255,.18);
+
+transform:translateY(-3px);
+
+}
+
+/* ==========================================
+   DARK MODE BUTTON
+========================================== */
+
+.theme-btn{
+
+position:fixed;
+
+top:20px;
+
+right:20px;
+
+width:55px;
+
+height:55px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.15);
+
+backdrop-filter:blur(15px);
+
+border:1px solid rgba(255,255,255,.2);
+
+color:white;
+
+font-size:20px;
+
+z-index:999;
+
+}
+
+.theme-btn:hover{
+
+transform:rotate(20deg) scale(1.08);
+
+}
+
+/* ==========================================
+   QUIZ HEADER
+========================================== */
+
+.quiz-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:20px;
+
+flex-wrap:wrap;
+
+gap:15px;
+
+}
+
+.question-counter{
+
+font-size:1rem;
+
+font-weight:600;
+
+}
+
+.score-box{
+
+background:rgba(255,255,255,.15);
+
+padding:10px 18px;
+
+border-radius:15px;
+
+font-weight:700;
+
+}
+
+/* ==========================================
+   PROGRESS BAR
+========================================== */
+
+.progress{
+
+height:14px;
+
+background:rgba(255,255,255,.12);
+
+border-radius:999px;
+
+overflow:hidden;
+
+margin-bottom:30px;
+
+}
+
+.progress-fill{
+
+height:100%;
+
+width:0%;
+
+background:linear-gradient(
+90deg,
+#06B6D4,
+#6C63FF,
+#EC4899
+);
+
+border-radius:999px;
+
+transition:.45s;
+
+}
+
+/* ==========================================
+   TIMER
+========================================== */
+
+.timer-box{
+
+margin-bottom:25px;
+
+font-weight:600;
+
+font-size:1rem;
+
+opacity:.9;
+
+}
+
+/* ==========================================
+   QUESTION
+========================================== */
+
+.question{
+
+font-size:2rem;
+
+font-weight:700;
+
+margin-bottom:25px;
+
+line-height:1.4;
+
+}
+
+/* ==========================================
+   FEEDBACK
+========================================== */
+
+.feedback{
+
+min-height:45px;
+
+margin-top:18px;
+
+font-size:1.05rem;
+
+font-weight:600;
+
+text-align:center;
+
+transition:.3s;
+
+}
+
+.feedback.correct{
+
+color:#4ADE80;
+
+}
+
+.feedback.wrong{
+
+color:#F87171;
+
+}
+
+/* ==========================================
+   MINI STATS
+========================================== */
+
+.stats-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(170px,1fr));
+
+gap:18px;
+
+margin-top:35px;
+
+}
+
+.mini-card{
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.15);
+
+border-radius:18px;
+
+padding:22px;
+
+text-align:center;
+
+transition:.3s;
+
+}
+
+.mini-card:hover{
+
+transform:
+translateY(-5px);
+
+background:rgba(255,255,255,.12);
+
+}
+
+.mini-card h3,
+.mini-card h4{
+
+margin-bottom:10px;
+
+font-size:1rem;
+
+}
+
+.mini-card p{
+
+font-size:1.25rem;
+
+font-weight:700;
+
+}
+
+/* ==========================================
+   RESULT SCREEN
+========================================== */
+
+.result-header{
+
+text-align:center;
+
+margin-bottom:30px;
+
+}
+
+.result-header h1{
+
+font-size:2.8rem;
+
+margin-bottom:10px;
+
+}
+
+.result-header h2{
+
+opacity:.9;
+
+font-weight:500;
+
+}
+
+/* ==========================================
+   SCORE CIRCLE
+========================================== */
+
+.score-circle{
+
+width:220px;
+
+height:220px;
+
+margin:35px auto;
+
+border-radius:50%;
+
+background:linear-gradient(
+135deg,
+var(--primary),
+var(--secondary)
+);
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+box-shadow:
+0 0 40px rgba(108,99,255,.45);
+
+animation:pulse 2.5s infinite;
+
+}
+
+.score-circle span{
+
+font-size:4rem;
+
+font-weight:800;
+
+line-height:1;
+
+}
+
+.score-circle small{
+
+font-size:1.4rem;
+
+margin-top:10px;
+
+opacity:.85;
+
+}
+
+@keyframes pulse{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.05);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+/* ==========================================
+   FRIENDSHIP RANK
+========================================== */
+
+.friend-rank{
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+.friend-rank h2{
+
+font-size:2rem;
+
+background:linear-gradient(
+90deg,
+#FFD700,
+#FF9F1C,
+#FFD700
+);
+
+background-clip:text;
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+/* ==========================================
+   RESULT MESSAGE
+========================================== */
+
+.result-message{
+
+text-align:center;
+
+margin-bottom:35px;
+
+}
+
+.result-message h3{
+
+font-size:1.8rem;
+
+margin-bottom:12px;
+
+}
+
+.result-message p{
+
+opacity:.85;
+
+line-height:1.7;
+
+}
+
+/* ==========================================
+   CERTIFICATE
+========================================== */
+
+.certificate{
+
+margin-top:40px;
+
+margin-bottom:35px;
+
+padding:35px;
+
+border-radius:25px;
+
+background:
+
+linear-gradient(
+135deg,
+rgba(255,255,255,.18),
+rgba(255,255,255,.08)
+);
+
+border:2px solid rgba(255,255,255,.25);
+
+text-align:center;
+
+}
+
+.certificate-inner{
+
+padding:30px;
+
+border:2px dashed rgba(255,255,255,.3);
+
+border-radius:20px;
+
+}
+
+.certificate h1{
+
+font-size:3rem;
+
+margin-bottom:15px;
+
+}
+
+.certificate h2{
+
+margin-bottom:12px;
+
+}
+
+.certificate p{
+
+margin:12px 0;
+
+opacity:.9;
+
+}
+
+.certificate-footer{
+
+margin-top:25px;
+
+font-size:1.2rem;
+
+font-weight:700;
+
+letter-spacing:2px;
+
+}
+
+/* ==========================================
+   LEADERBOARD
+========================================== */
+
+.leaderboard{
+
+margin-top:45px;
+
+}
+
+.leaderboard-header{
+
+text-align:center;
+
+margin-bottom:30px;
+
+}
+
+.leaderboard-header h2{
+
+font-size:2.2rem;
+
+margin-bottom:8px;
+
+}
+
+.leaderboard-header p{
+
+opacity:.75;
+
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.leaderboard table{
+
+width:100%;
+
+border-collapse:collapse;
+
+overflow:hidden;
+
+}
+
+.leaderboard th{
+
+padding:18px;
+
+background:rgba(255,255,255,.12);
+
+font-size:1rem;
+
+}
+
+.leaderboard td{
+
+padding:18px;
+
+text-align:center;
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+transition:.3s;
+
+}
+
+.leaderboard tbody tr{
+
+transition:.3s;
+
+}
+
+.leaderboard tbody tr:hover{
+
+background:rgba(255,255,255,.08);
+
+transform:scale(1.01);
+
+}
+
+/* ==========================================
+   TOP 3
+========================================== */
+
+.gold{
+
+color:#FFD700;
+
+font-weight:700;
+
+}
+
+.silver{
+
+color:#C0C0C0;
+
+font-weight:700;
+
+}
+
+.bronze{
+
+color:#CD7F32;
+
+font-weight:700;
+
+}
+
+.my-score{
+
+background:rgba(255,255,255,.12);
+
+border-left:5px solid #FFD700;
+
+}
+
+/* ==========================================
+   PLAY AGAIN BUTTON
+========================================== */
+
+#playAgain{
+
+margin-top:20px;
+
+}
+
+/* ==========================================
+   DOWNLOAD BUTTON
+========================================== */
+
+#downloadCertificate{
+
+margin-top:20px;
+
+}
+
+/* ==========================================
+   SHARE BUTTON
+========================================== */
+
+#shareScore{
+
+margin-top:20px;
+
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
+
+@media (max-width:900px){
+
+.container{
+
+width:95%;
+
+padding:25px 0;
+
+}
+
+.title{
+
+font-size:2.3rem;
+
+}
+
+.question{
+
+font-size:1.5rem;
+
+}
+
+.score-circle{
+
+width:180px;
+
+height:180px;
+
+}
+
+.score-circle span{
+
+font-size:3.2rem;
+
+}
+
+.buttons{
+
+flex-direction:column;
+
+}
+
+.primary,
+.secondary{
+
+width:100%;
+
+}
+
+.leaderboard{
+
+overflow-x:auto;
+
+}
+
+.leaderboard table{
+
+min-width:650px;
+
+}
+
+}
+
+/* ==========================================
+   SMALL PHONES
+========================================== */
+
+@media (max-width:550px){
+
+.glass{
+
+padding:20px;
+
+border-radius:18px;
+
+}
+
+.title{
+
+font-size:1.9rem;
+
+}
+
+.hero{
+
+font-size:3rem;
+
+}
+
+.question{
+
+font-size:1.25rem;
+
+}
+
+.score-circle{
+
+width:150px;
+
+height:150px;
+
+}
+
+.score-circle span{
+
+font-size:2.7rem;
+
+}
+
+.stats-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.theme-btn{
+
+width:48px;
+
+height:48px;
+
+font-size:18px;
+
+top:15px;
+
+right:15px;
+
+}
+
+}
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+body.dark{
+
+background:#050816;
+
+}
+
+body.dark .glass{
+
+background:rgba(20,25,45,.65);
+
+border:1px solid rgba(255,255,255,.08);
+
+}
+
+body.dark input{
+
+background:rgba(255,255,255,.08);
+
+}
+
+body.dark .mini-card{
+
+background:rgba(255,255,255,.05);
+
+}
+
+body.dark .leaderboard th{
+
+background:rgba(255,255,255,.08);
+
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#111827;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:linear-gradient(
+180deg,
+#6C63FF,
+#06B6D4
+);
+
+border-radius:999px;
+
+}
+
+/* ==========================================
+   GLOW EFFECTS
+========================================== */
+
+.primary,
+.score-circle{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.primary::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:-100%;
+
+width:100%;
+
+height:100%;
+
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.35),
+transparent
+);
+
+transition:.8s;
+
+}
+
+.primary:hover::before{
+
+left:120%;
+
+}
+
+/* ==========================================
+   CONFETTI
+========================================== */
+
+#confettiContainer{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+overflow:hidden;
+
+z-index:9999;
+
+}
+
+.confetti{
+
+position:absolute;
+
+width:12px;
+
+height:12px;
+
+animation:confettiFall 4s linear forwards;
+
+}
+
+@keyframes confettiFall{
+
+0%{
+
+transform:
+translateY(-100px)
+rotate(0deg);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:
+translateY(110vh)
+rotate(900deg);
+
+opacity:0;
+
+}
+
+}
+
+/* ==========================================
+   HIDDEN
+========================================== */
+
+.hidden{
+
+display:none !important;
+
+}
+
+/* ==========================================
+   SMOOTH ANIMATIONS
+========================================== */
+
+button,
+input,
+.glass,
+.mini-card,
+.score-circle,
+table tr{
+
+transition:all .3s ease;
+
+}
+
+/* ==========================================
+   END OF STYLE.CSS
+========================================== */

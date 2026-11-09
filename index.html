@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>💙 Ultimate Best Friend Quiz</title>
+
+    <meta name="theme-color" content="#5B5FFF">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+<!-- ============================= -->
+<!-- Animated Background -->
+<!-- ============================= -->
+
+<div class="aurora">
+
+    <span class="blob blob1"></span>
+    <span class="blob blob2"></span>
+    <span class="blob blob3"></span>
+    <span class="blob blob4"></span>
+
+</div>
+
+<div class="particles">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+
+<!-- ============================= -->
+<!-- Dark Mode -->
+<!-- ============================= -->
+
+<button id="themeBtn" class="theme-btn">
+
+    <i class="fa-solid fa-moon"></i>
+
+</button>
+
+<!-- ============================= -->
+<!-- Main Container -->
+<!-- ============================= -->
+
+<div class="container">
+
+<!-- ============================= -->
+<!-- Welcome Screen -->
+<!-- ============================= -->
+
+<section
+id="welcomeScreen"
+class="glass screen active">
+
+<h1 class="title">
+
+💙 Ultimate Best Friend Quiz 💙
+
+</h1>
+
+<p class="subtitle">
+
+Think you know me better than everyone else?
+
+</p>
+
+<div class="hero">
+
+😎🔥🎉
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Enter Your Name
+
+</label>
+
+<input
+id="playerName"
+type="text"
+maxlength="30"
+placeholder="Your name...">
+
+</div>
+
+<button
+id="startQuiz"
+class="primary">
+
+Start Quiz
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</button>
+
+<div class="stats-grid">
+
+<div class="mini-card">
+
+<h3>
+
+Highest Score
+
+</h3>
+
+<p id="bestScore">
+
+0 / 15
+
+</p>
+
+</div>
+
+<div class="mini-card">
+
+<h3>
+
+Global Rank
+
+</h3>
+
+<p id="playerRank">
+
+--
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ============================= -->
+<!-- Quiz Screen -->
+<!-- ============================= -->
+
+<section
+id="quizScreen"
+class="glass screen">
+
+<div class="quiz-header">
+
+<div class="question-counter">
+
+Question
+
+<span id="questionNumber">
+
+1
+
+</span>
+
+/
+
+<span id="totalQuestions">
+
+15
+
+</span>
+
+</div>
+
+<div class="score-box">
+
+⭐
+
+<span id="scoreDisplay">
+
+0
+
+</span>
+
+</div>
+
+</div>
+
+<div class="progress">
+
+<div
+id="progressFill"
+class="progress-fill">
+
+</div>
+
+</div>
+
+<div class="timer-box">
+
+⏱ Time
+
+<span id="timer">
+
+00:00
+
+</span>
+
+</div>
+
+<h2
+id="questionText"
+class="question">
+
+Loading...
+
+</h2>
+
+<input
+id="answerInput"
+type="text"
+placeholder="Type your answer...">
+
+<div
+id="feedbackMessage"
+class="feedback">
+
+</div>
+
+<div class="buttons">
+
+<button
+id="submitAnswer"
+class="primary">
+
+Submit
+
+<i class="fa-solid fa-paper-plane"></i>
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ============================= -->
+<!-- Result Screen -->
+<!-- ============================= -->
+
+<section
+id="resultScreen"
+class="glass screen">
+
+<h1>
+
+🎉 Quiz Complete!
+
+</h1>
+
+<h2 id="playerGreeting">
+
+Amazing!
+
+</h2>
+
+<div class="score-circle">
+
+<span id="finalScore">
+
+0
+
+</span>
+
+<small>
+
+/15
+
+</small>
+
+</div>
+
+<h2 id="friendRank">
+
+Best Friend
+
+</h2>
+
+<p
+id="scoreMessage">
+
+Great Job!
+
+</p>
+
+<div class="stats-grid">
+
+<div class="mini-card">
+
+<h3>
+
+Accuracy
+
+</h3>
+
+<p id="accuracyResult">
+
+100%
+
+</p>
+
+</div>
+
+<div class="mini-card">
+
+<h3>
+
+Time
+
+</h3>
+
+<p id="timeTaken">
+
+00:00
+
+</p>
+
+</div>
+
+<div class="mini-card">
+
+<h3>
+
+Highest Score
+
+</h3>
+
+<p id="highestScoreResult">
+
+0 / 15
+
+</p>
+
+</div>
+
+<div class="mini-card">
+
+<h3>
+
+Leaderboard Rank
+
+</h3>
+
+<p id="rankResult">
+
+--
+
+</p>
+
+</div>
+
+</div>
+
+<!-- ============================= -->
+<!-- Certificate -->
+<!-- ============================= -->
+
+<div
+id="certificate"
+class="certificate">
+
+<div class="certificate-inner">
+
+<h1>
+
+🏆
+
+</h1>
+
+<h2>
+
+Certificate of Friendship
+
+</h2>
+
+<p>
+
+Awarded To
+
+</p>
+
+<h1 id="certificateName">
+
+Friend
+
+</h1>
+
+<p>
+
+For completing the
+
+</p>
+
+<h2>
+
+Ultimate Best Friend Quiz
+
+</h2>
+
+<h3>
+
+Score
+
+</h3>
+
+<h2 id="certificateScore">
+
+0 / 15
+
+</h2>
+
+<p>
+
+⭐ True Friend ⭐
+
+</p>
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button
+id="downloadCertificate"
+class="primary">
+
+<i class="fa-solid fa-download"></i>
+
+Download Certificate
+
+</button>
+
+<button
+id="shareScore"
+class="secondary">
+
+<i class="fa-solid fa-share-nodes"></i>
+
+Share Score
+
+</button>
+
+<button
+id="playAgain"
+class="secondary">
+
+<i class="fa-solid fa-rotate-right"></i>
+
+Play Again
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ============================= -->
+<!-- Global Leaderboard -->
+<!-- ============================= -->
+
+<section
+class="glass leaderboard">
+
+<h2>
+
+🏆 Global Leaderboard
+
+</h2>
+
+<p>
+
+Top 100 Friends
+
+</p>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Rank
+
+</th>
+
+<th>
+
+Player
+
+</th>
+
+<th>
+
+Score
+
+</th>
+
+<th>
+
+Accuracy
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody
+id="leaderboardBody">
+
+<tr>
+
+<td colspan="4">
+
+Loading...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+</div>
+
+<!-- ============================= -->
+<!-- Confetti -->
+<!-- ============================= -->
+
+<div
+id="confettiContainer">
+
+</div>
+
+<!-- ============================= -->
+<!-- Sounds -->
+<!-- ============================= -->
+
+<audio
+id="correctSound"
+preload="auto">
+
+<source
+src="assets/correct.mp3"
+type="audio/mpeg">
+
+</audio>
+
+<audio
+id="wrongSound"
+preload="auto">
+
+<source
+src="assets/wrong.mp3"
+type="audio/mpeg">
+
+</audio>
+
+<!-- ============================= -->
+<!-- Libraries -->
+<!-- ============================= -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- ============================= -->
+<!-- Main Script -->
+<!-- ============================= -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
