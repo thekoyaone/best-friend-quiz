@@ -10,9 +10,10 @@
 const SUPABASE_URL = "https://szcluamocpvhhvwsqikb.supabase.co";
 const SUPABASE_KEY = "sb_publishable_dQreDZwBnfH097vZQ7tm9g_T17NyJxT";
 
-const supabase = window.supabase.createClient(
+const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
+);
 );
 
 // -------------------------
