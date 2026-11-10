@@ -625,25 +625,23 @@ document
 // PART 5 - SUPABASE LEADERBOARD
 // ======================================================
 
-async function saveScore() {
+window.saveScore = async function () {
     const accuracy = Math.round((score / questions.length) * 100);
 
     const { error } = await supabaseClient
         .from("leaderboard")
-        .insert([
-            {
-                name: playerName,
-                score: score,
-                accuracy: accuracy
-            }
-        ]);
+        .insert([{
+            name: playerName,
+            score: score,
+            accuracy: accuracy
+        }]);
 
     if (error) {
         console.error("Leaderboard save error:", error);
     }
-}
+};
 
-async function loadLeaderboard() {
+window.loadLeaderboard = async function () {
     const { data, error } = await supabaseClient
         .from("leaderboard")
         .select("name, score, accuracy")
@@ -662,14 +660,16 @@ async function loadLeaderboard() {
     data.forEach((entry, index) => {
         const row = document.createElement("tr");
 
-        row.innerHTML = `
-            <td>${index + 1}</td>
-            <td></td>
-            <td>${entry.score}/15</td>
-        `;
+        const rankCell = document.createElement("td");
+        rankCell.textContent = index + 1;
 
-        row.children[1].textContent = entry.name;
+        const nameCell = document.createElement("td");
+        nameCell.textContent = entry.name;
 
+        const scoreCell = document.createElement("td");
+        scoreCell.textContent = `${entry.score}/15`;
+
+        row.append(rankCell, nameCell, scoreCell);
         leaderboardBody.appendChild(row);
     });
-}
+};
