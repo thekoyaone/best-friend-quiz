@@ -638,7 +638,13 @@ window.saveScore = async function () {
 
     if (error) {
         console.error("Leaderboard save error:", error);
+        return;
     }
+
+    console.log("Score saved successfully!");
+
+    // Refresh only after saving
+    await window.loadLeaderboard();
 };
 
 window.loadLeaderboard = async function () {
