@@ -661,23 +661,29 @@ window.loadLeaderboard = async function () {
         return;
     }
 
-    leaderboardBody.innerHTML = "";
+    leaderboardBody.innerHTML = ""};
 
-    data.forEach((entry, index) => {
-        const row = document.createElement("tr");
+data.forEach((entry, index) => {
+    const row = document.createElement("tr");
 
-        row.innerHTML = `
-            <td>${index + 1}</td>
-            <td></td>
-            <td>${entry.score}/15</td>
-            <td>${entry.accuracy}%</td>
-        `;
+    const rankCell = document.createElement("td");
+    rankCell.textContent = index + 1;
 
-        row.children[1].textContent = entry.name;
-        leaderboardBody.appendChild(row);
-    });
-};
+    const nameCell = document.createElement("td");
+    nameCell.textContent = entry.name;
 
-window.addEventListener("DOMContentLoaded", () => {
-    window.loadLeaderboard();
+    const scoreCell = document.createElement("td");
+    scoreCell.textContent = `${entry.score}/15`;
+
+    const accuracyCell = document.createElement("td");
+    accuracyCell.textContent = `${entry.accuracy ?? "—"}%`;
+
+    row.append(
+        rankCell,
+        nameCell,
+        scoreCell,
+        accuracyCell
+    );
+
+    leaderboardBody.appendChild(row);
 });
