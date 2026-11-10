@@ -661,29 +661,30 @@ window.loadLeaderboard = async function () {
         return;
     }
 
-    leaderboardBody.innerHTML = ""};
+    leaderboardBody.innerHTML = "";
 
-data.forEach((entry, index) => {
-    const row = document.createElement("tr");
+    data.forEach((entry, index) => {
+        const row = document.createElement("tr");
 
-    const rankCell = document.createElement("td");
-    rankCell.textContent = index + 1;
+        const rankCell = document.createElement("td");
+        rankCell.textContent = index + 1;
 
-    const nameCell = document.createElement("td");
-    nameCell.textContent = entry.name;
+        const nameCell = document.createElement("td");
+        nameCell.textContent = entry.name;
 
-    const scoreCell = document.createElement("td");
-    scoreCell.textContent = `${entry.score}/15`;
+        const scoreCell = document.createElement("td");
+        scoreCell.textContent = `${entry.score}/15`;
 
-    const accuracyCell = document.createElement("td");
-    accuracyCell.textContent = `${entry.accuracy ?? "—"}%`;
+        const accuracyCell = document.createElement("td");
+        accuracyCell.textContent = `${entry.accuracy ?? "—"}%`;
 
-    row.append(
-        rankCell,
-        nameCell,
-        scoreCell,
-        accuracyCell
-    );
+        row.append(
+            rankCell,
+            nameCell,
+            scoreCell,
+            accuracyCell
+        );
 
-    leaderboardBody.appendChild(row);
-});
+        leaderboardBody.appendChild(row);
+    });
+};
