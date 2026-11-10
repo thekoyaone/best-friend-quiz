@@ -621,3 +621,55 @@ document
 
 });
 
+// ======================================================
+// PART 5 - SUPABASE LEADERBOARD
+// ======================================================
+
+async function saveScore() {
+    const accuracy = Math.round((score / questions.length) * 100);
+
+    const { error } = await supabaseClient
+        .from("leaderboard")
+        .insert([
+            {
+                name: playerName,
+                score: score,
+                accuracy: accuracy
+            }
+        ]);
+
+    if (error) {
+        console.error("Leaderboard save error:", error);
+    }
+}
+
+async function loadLeaderboard() {
+    const { data, error } = await supabaseClient
+        .from("leaderboard")
+        .select("name, score, accuracy")
+        .order("score", { ascending: false })
+        .limit(20);
+
+    if (error) {
+        console.error("Leaderboard load error:", error);
+        leaderboardBody.innerHTML =
+            "<tr><td colspan='3'>Could not load leaderboard.</td></tr>";
+        return;
+    }
+
+    leaderboardBody.innerHTML = "";
+
+    data.forEach((entry, index) => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td></td>
+            <td>${entry.score}/15</td>
+        `;
+
+        row.children[1].textContent = entry.name;
+
+        leaderboardBody.appendChild(row);
+    });
+}
