@@ -367,26 +367,26 @@ function isCorrect(userAnswer, acceptedAnswers) {
 
     userAnswer = normalize(userAnswer);
 
+    // Convert a single answer into an array
+    if (!Array.isArray(acceptedAnswers)) {
+        acceptedAnswers = [acceptedAnswers];
+    }
+
     for (let answer of acceptedAnswers) {
 
         answer = normalize(answer);
 
-        // Exact
         if (userAnswer === answer)
             return true;
 
-        // Extra words
         if (userAnswer.includes(answer))
             return true;
 
-        // Small typo
         if (levenshtein(userAnswer, answer) <= 2)
             return true;
-
     }
 
     return false;
-
 }
 
 // Check Answer
