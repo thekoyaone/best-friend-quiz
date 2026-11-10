@@ -679,3 +679,7 @@ window.loadLeaderboard = async function () {
         leaderboardBody.appendChild(row);
     });
 };
+
+window.addEventListener("DOMContentLoaded", () => {
+    window.loadLeaderboard();
+});
