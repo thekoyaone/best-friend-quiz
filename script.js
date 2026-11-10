@@ -37,6 +37,8 @@ const progressFill = document.getElementById("progressFill");
 const scoreDisplay = document.getElementById("scoreDisplay");
 const finalScore = document.getElementById("finalScore");
 
+const leaderboardBody = document.getElementById("leaderboardBody");
+
 const questionNumber = document.getElementById("questionNumber");
 
 const feedback = document.getElementById("feedbackMessage");
@@ -53,8 +55,6 @@ const friendRank = document.getElementById("friendRank");
 const accuracyResult = document.getElementById("accuracyResult");
 
 const timeTaken = document.getElementById("timeTaken");
-
-const leaderboardBody = document.getElementById("leaderboardBody");
 
 const themeBtn = document.getElementById("themeBtn");
 
@@ -657,7 +657,7 @@ window.loadLeaderboard = async function () {
     if (error) {
         console.error("Leaderboard load error:", error);
         leaderboardBody.innerHTML =
-            "<tr><td colspan='3'>Could not load leaderboard.</td></tr>";
+            "<tr><td colspan='4'>Could not load leaderboard.</td></tr>";
         return;
     }
 
@@ -666,16 +666,14 @@ window.loadLeaderboard = async function () {
     data.forEach((entry, index) => {
         const row = document.createElement("tr");
 
-        const rankCell = document.createElement("td");
-        rankCell.textContent = index + 1;
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td></td>
+            <td>${entry.score}/15</td>
+            <td>${entry.accuracy}%</td>
+        `;
 
-        const nameCell = document.createElement("td");
-        nameCell.textContent = entry.name;
-
-        const scoreCell = document.createElement("td");
-        scoreCell.textContent = `${entry.score}/15`;
-
-        row.append(rankCell, nameCell, scoreCell);
+        row.children[1].textContent = entry.name;
         leaderboardBody.appendChild(row);
     });
 };
